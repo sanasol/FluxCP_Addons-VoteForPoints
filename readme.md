@@ -36,24 +36,28 @@ Do not steal the credit of this work.
 - PHP 5.2+
 - MySql
 
-# How to Install
-1. Create a folder named `voteforpoints` in your `addons` folder.
+# Installation
 
-2. Extract all the files in `voteforpoints` folder.
+1. Create a folder named `voteforpoints` in your `flux_root_folder/addons` folder.
+
+2. Download this addon and extract all the files into the `voteforpoints` folder.
 
 3. Import the sql files from `schemas/logindb` folder.
 
-4. Create a folder named `votes` or whatever name you use in the configuration and the path must for the folder be in /themes/default/img/
+4. Create a folder in `flux_root_folder/themes/default/img/votes/` or replace `votes` with whichever name you use in the configuration.
 
-5. Copy the file `voteforpoints.txt` from npc folder and paste it to your `server/npc/custom/`
+5. Give permissions to the `flux_root_folder/themes/default/img/votes/` folder so that your flux website can upload images. You can do this by using the terminal, going to the `flux_root_folder/themes/default/img/` directory and typing `chmod 777 votes`.
 
-6. Edit the file `scripts_custom.conf` and add the line `npc: npc/custom/voteforpoints.txt`
+6. Copy the file `voteforpoints.txt` from npc folder and paste it to your `rAthena_root_folder/npc/custom/`
 
-7. Change the settings in `voteforpoints.txt` to your liking.
+7. Edit the file `scripts_custom.conf` and add the line `npc: npc/custom/voteforpoints.txt`
 
-8. Done.
+8. Change the settings in `voteforpoints` to your liking.
 
-# Bug Reports
+9. Done
+
+## Bug Reports
+
 If you find a bug, please contact me.
 
 Github: http://github.com/Feefty  
