@@ -26,8 +26,8 @@ if (isset($_POST['id']))
 	} else
 
 	// voter is using invalid ip
-	if (Flux::config('EnableIPVoteCheck') && !empty($_SERVER["HTTP_X_FORWARDED_FOR"]) || 
-		Flux::config('EnableIPVoteCheck') && !empty($_SERVER['HTTP_CLIENT_IP']) || 
+	if (Flux::config('EnableIPVoteCheck') && !empty($_SERVER["HTTP_X_FORWARDED_FOR"]) ||
+		Flux::config('EnableIPVoteCheck') && !empty($_SERVER['HTTP_CLIENT_IP']) ||
 		Flux::config('EnableIPVoteCheck') && !empty($_SERVER['HTTP_X_FORWARDED']))
 	{
 		$errorMessage = sprintf(Flux::message("UnableToVote"), 1);
@@ -52,7 +52,7 @@ if (isset($_POST['id']))
 			$bind = array($account_id, $id, time());
 			$sth->execute($bind);
 
-			if ($sth->rowCount()) 
+			if ($sth->rowCount())
 			{
 				$errorMessage = Flux::message("AlreadyVoted");
 			} else {
@@ -102,7 +102,7 @@ if (isset($_POST['id']))
 							case "cash":
 								// insert or update cashpoints
 								$cashpoints_var = "#CASHPOINTS";
-								$sql = "UPDATE $cp_tbl SET value = value + ? WHERE key = ? AND account_id = ?";
+								$sql = "UPDATE $cp_tbl SET `value` = `value` + ? WHERE `key` = ? AND account_id = ?";
 								$sth = $server->connection->getStatement($sql);
 								$sth->execute(array((int) $res->votepoints, $cashpoints_var, $account_id));
 

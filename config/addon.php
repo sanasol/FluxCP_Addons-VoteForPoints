@@ -1,5 +1,5 @@
 <?php if (!defined('FLUX_ROOT')) exit;
-return array(		
+return array(
 	'DefaultThemeName'		=> 'default',
 	'PointsType'			=> "cash", // credit, vote, cash
 	'DefaultIntervalVoting' => 12,
@@ -38,7 +38,7 @@ return array(
 	'FluxTables'	=> array(
 		'vfp_logs' => 'cp_vfp_logs',
 		'vfp_sites' => 'cp_vfp_sites',
-		'cashpoints' => 'acc_reg_num_db'
+		'cashpoints' => 'acc_reg_num'
 	)
 )
 ?>
