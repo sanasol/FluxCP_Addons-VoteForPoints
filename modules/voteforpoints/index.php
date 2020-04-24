@@ -35,7 +35,7 @@ function getUserIP()
     return $ip;
 }
 
-if (isset($_POST['id']))
+if (isset($_REQUEST['id']))
 {
     $id 		= (int) $params->get('id');
     $ip 		= getUserIP();
@@ -122,7 +122,7 @@ if (isset($_POST['id']))
                                 $sql = "select value from $cp_tbl WHERE `key` = ? AND account_id = ?";
                                 $sth = $server->connection->getStatement($sql);
                                 $sth->execute(array($cashpoints_var, $account_id));
-                                
+
                                 // account doesn't have a record for cashpoints
                                 // so we will add a row
                                 if (!$sth->rowCount())
@@ -162,6 +162,9 @@ if (isset($_POST['id']))
                                 }
                                 break;
                         }
+
+                        header('Location: '.$res->voteurl);
+                        exit();
                     }
                 }
             }
