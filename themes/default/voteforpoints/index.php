@@ -25,7 +25,13 @@
                     <a
                             <?php
                             if (isVoted($row->id, $server) === FALSE) {
-                                echo 'target="_blank" href="'. $this->urlWithQs . '&id=' . $row->id.'"';
+                                $url = $this->urlWithQs;
+                                if(strpos($url, '?') !== false) {
+                                    $url .= '&id='.$row->id;
+                                } else {
+                                    $url .= '?id='.$row->id;
+                                }
+                                echo 'target="_blank" href="'. $url .'"';
                             }
                             ?>
                             class="vote-button"
@@ -39,6 +45,22 @@
             </tr>
         <?php endforeach ?>
     </table>
+
+<script type="text/javascript">
+    function handler() {
+        setTimeout(function () {
+            window.location.reload();
+        }, 2000);
+    }
+    document.addEventListener('click', function(e) {
+        for (var target = e.target; target && target != this; target = target.parentNode) {
+            if (target.matches('.vote-button')) {
+                handler.call(target, e);
+                break;
+            }
+        }
+    }, false);
+</script>
 <?php else: ?>
 	<p class='red'><?php echo htmlspecialchars(Flux::message("NoVotingSiteYet2")) ?></p>
 <?php endif ?>
