@@ -60,6 +60,12 @@
             }
         }
     }, false);
+
+    if (document.location.href.indexOf('id') > -1) {
+        var href = new URL(document.location.href);
+        href.searchParams.delete('id');
+        window.history.pushState('', document.title, href.toString());
+    }
 </script>
 <?php else: ?>
 	<p class='red'><?php echo htmlspecialchars(Flux::message("NoVotingSiteYet2")) ?></p>
