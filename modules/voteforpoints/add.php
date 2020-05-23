@@ -59,7 +59,7 @@ if (isset($_POST['votename']))
 	// imageurl is not a valid url
 	if ($imageurl !== "" && !filter_var($imageurl, FILTER_VALIDATE_URL))
 		$errorMessage = sprintf(Flux::message("InvalidURL"), 'Image URL');
-	else 
+	else
 	// uploadimg has an error
 	if ($uploadimg['error'] > 0 && $imageurl === "")
 		$errorMessage = Flux::message("UploadImageOrImageURL");
@@ -70,7 +70,7 @@ if (isset($_POST['votename']))
 		$ext = explode(".", $uploadimg['name']);
 		$ext = end($ext);
 		// invalid image type
-		if (!preg_match("/image\//", $uploadimg['type']) && 
+		if (!preg_match("/image\//", $uploadimg['type']) &&
 			!in_array(str_replace("image/", "", $uploadimg['type']), $imgtypes) &&
 			!in_array($ext, $imgtypes))
 			$errorMessage = Flux::message("InvalidImageType");
@@ -86,14 +86,14 @@ if (isset($_POST['votename']))
 		// invalid image size
 		if ($size[0] > Flux::config('ImageMaxWidth') || $size[1] > Flux::config('ImageMaxHeight'))
 			$errorMessage = sprintf(Flux::message("InvalidImageSize"), Flux::config('ImageMaxWidth'), Flux::config('ImageMaxHeight'));
-		else 
+		else
 		{
 			$filename = time()."_".md5(time().$server->serverName).".".$ext;
 			$filepath = FLUX_ROOT .'/'. FLUX_THEME_DIR.'/'. Flux::config('DefaultThemeName') .'/img/'. Flux::config('ImageUploadPath');
-		
+
 			if ( ! is_dir($filepath))
 				mkdir($filepath);
-			
+
 			// failed to upload the image
 			if (!move_uploaded_file($uploadimg['tmp_name'], $filepath.'/'.$filename))
 				$errorMessage = Flux::message("FailedToUpload");
@@ -107,12 +107,12 @@ if (isset($_POST['votename']))
 
 		if ($imageurl === "")
 			$imageurl = NULL;
-		
-		if ($uploadimg['error'] > 0) 
+
+		if ($uploadimg['error'] > 0)
 			$uploadimg = NULL;
 
-		$bind = array($votename, $voteurl, $voteinterval, $votepoints, $filename, $imageurl, date(Flux::config('DateTimeFormat')));
-		
+		$bind = array($votename, $voteurl, $voteinterval, $votepoints, $filename, $imageurl, date('Y-m-d H:i:s'));
+
 		if ($sth->execute($bind))
 			$successMessage = Flux::message("SuccessVoteSite");
 		else

@@ -80,8 +80,8 @@ if (isset($_REQUEST['id']))
                 $sql = "UPDATE $server->loginDatabase.$vfp_logs SET timestamp_expire = ?, timestamp_voted = ?, ipaddress = ? WHERE account_id = ? AND sites_id = ?";
                 $sth = $server->connection->getStatement($sql);
                 $bind = array(
-                    date(Flux::config("DateTimeFormat"), strtotime("+".$res->voteinterval." hours")),
-                    date(Flux::config("DateTimeFormat")),
+                    date('Y-m-d H:i:s', strtotime("+".$res->voteinterval." hours")),
+                    date('Y-m-d H:i:s'),
                     $ip,
                     $account_id,
                     $id
@@ -95,8 +95,8 @@ if (isset($_REQUEST['id']))
                     $sth = $server->connection->getStatement($sql);
                     $bind = array(
                         $id,
-                        date(Flux::config("DateTimeFormat"), strtotime("+".$res->voteinterval." hours")),
-                        date(Flux::config("DateTimeFormat")),
+                        date('Y-m-d H:i:s', strtotime("+".$res->voteinterval." hours")),
+                        date('Y-m-d H:i:s'),
                         $ip,
                         $account_id
                     );
