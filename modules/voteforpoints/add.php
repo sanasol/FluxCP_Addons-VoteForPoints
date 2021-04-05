@@ -89,13 +89,13 @@ if (isset($_POST['votename']))
 		else
 		{
 			$filename = time()."_".md5(time().$server->serverName).".".$ext;
-			$filepath = FLUX_ROOT .'/'. FLUX_THEME_DIR.'/'. Flux::config('DefaultThemeName') .'/img/'. Flux::config('ImageUploadPath');
-
-			if ( ! is_dir($filepath))
+			$filepath = FLUX_DATA_DIR.'/'.Flux::config('ImageUploadPath').'/';
+			if (!is_dir($filepath)) {
 				mkdir($filepath);
+			}
 
 			// failed to upload the image
-			if (!move_uploaded_file($uploadimg['tmp_name'], $filepath.'/'.$filename))
+			if (!move_uploaded_file($uploadimg['tmp_name'], $filepath.$filename))
 				$errorMessage = Flux::message("FailedToUpload");
 		}
 	}
@@ -114,7 +114,7 @@ if (isset($_POST['votename']))
 		$bind = array($votename, $voteurl, $voteinterval, $votepoints, $filename, $imageurl, date('Y-m-d H:i:s'));
 
 		if ($sth->execute($bind))
-			$successMessage = Flux::message("SuccessVoteSite");
+			$this->redirect($this->url('voteforpoints', 'list'));
 		else
 			$errorMessage = Flux::message("FailedToAdd");
 	}

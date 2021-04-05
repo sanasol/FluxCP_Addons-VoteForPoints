@@ -36,7 +36,7 @@
                             ?>
                             class="vote-button"
                             style="<?php echo (isVoted($row->id, $server) !== FALSE ? "cursor:not-allowed;": "cursor:pointer;") ?>">
-                        <img <?php echo (isVoted($row->id, $server) !== FALSE ? "style='opacity:0.3;filter:alpha(opacity=30)' ": "") ?>title='<?php echo htmlspecialchars($row->votename) ?>' src="<?php echo (is_null($row->imgurl) ? $this->themePath('img/').Flux::config('ImageUploadPath').'/'.$row->imgname : $row->imgurl) ?>" />
+                        <img <?php echo (isVoted($row->id, $server) !== FALSE ? "style='opacity:0.3;filter:alpha(opacity=30)' ": "") ?>title='<?php echo htmlspecialchars($row->votename) ?>' src="<?php echo (is_null($row->imgurl) ? '/'.FLUX_DATA_DIR.'/'.Flux::config('ImageUploadPath').'/'.$row->imgname : $row->imgurl) ?>" />
                     </a>
                 </td>
                 <td style="text-align:center"><?php echo number_format($row->votepoints) ?></td>

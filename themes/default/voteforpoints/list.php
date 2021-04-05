@@ -20,7 +20,7 @@
 		<?php foreach ($votesites_res as $row): ?>
 		<tr>
 			<td style="text-align:center">
-				<img title='<?php echo htmlspecialchars($row->votename) ?>' src="<?php echo (is_null($row->imgurl) ? $this->themePath('img/').Flux::config('ImageUploadPath').'/'.$row->imgname : $row->imgurl) ?>" />
+				<img title='<?php echo htmlspecialchars($row->votename) ?>' src="<?php echo (is_null($row->imgurl) ? '/'.FLUX_DATA_DIR.'/'.Flux::config('ImageUploadPath').'/'.$row->imgname : $row->imgurl) ?>" />
 			</td>
 			<td style="text-align:center"><?php echo number_format($row->votepoints) ?></td>
 			<td style="text-align:center"><?php echo $row->voteinterval." ".((int) $row->voteinterval > 1 ? "Hours" : "Hour") ?></td>

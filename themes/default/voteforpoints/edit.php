@@ -6,7 +6,7 @@
 	<p class="green"><?php echo htmlspecialchars($successMessage) ?></p>
 <?php endif ?>
 <?php if (is_null($unavailable)): ?>
-<form action="<?php echo $this->urlWithQs ?>" method="post" class="generic-form">
+<form action="<?php echo $this->urlWithQs ?>" method="post" class="generic-form" enctype="multipart/form-data">
 	<input type="hidden" name="voteid" value="<?php echo (int) $votesites_res->id ?>" />
 	<table class="generic-form-table">
 		<tr>

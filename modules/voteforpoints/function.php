@@ -56,6 +56,8 @@ if (!function_exists("isVoted"))
 
 			if ($sth->rowCount())
 				return $sth->fetch()->timestamp_expire;
+//			else
+//				return FALSE;
 		}
 
 		$sql = "SELECT `timestamp_expire` FROM $server->loginDatabase.$vfp_logs WHERE `account_id` = ? AND `sites_id` = ? AND UNIX_TIMESTAMP(timestamp_expire) > ? LIMIT 1";

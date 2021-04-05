@@ -45,7 +45,7 @@ return array(
 	"NoVotingSiteYet"	=> "You haven't submitted any voting site yet.",
 	"NoVotingSiteYet2"	=> "This page doesn't have a voting site yet.",
 	"VoteNotice"		=> "Please vote to make the server grow.",
-	"CurrentCashPoints"	=> "Current Cash Points: <b>%d</b>",
+	"CurrentCashPoints"	=> "Current Cash Points: <b>%s</b>",
 	"NoOneHasVotedYet"	=> "No one has voted yet.",
 	"VotersLogDeleted"	=> "You have deleted the voters log.",
 	"VotersLogDeleteFail" => "Failed to delete the voters log.",

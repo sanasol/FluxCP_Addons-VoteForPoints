@@ -119,7 +119,7 @@ if (isset($_POST['votename']))
 		$ext = end($ext);
 
 		// invalid image type
-		if (!preg_match("/image\//", $uploadimg['type']) && 
+		if (!preg_match("/image\//", $uploadimg['type']) &&
 			!in_array(str_replace("image/", "", $uploadimg['type']), $imgtypes) &&
 			!in_array($ext, $imgtypes))
 			$errorMessage = Flux::message("InvalidImageType");
@@ -138,13 +138,20 @@ if (isset($_POST['votename']))
 		else
 		{
 			$filename = time()."_".md5(time().$server->serverName).".".$ext;
-			$filepath = FLUX_THEME_DIR.'/'.Flux::config('ThemeName').'/img/'.Flux::config('ImageUploadPath').'/';
-			
+			$filepath = FLUX_DATA_DIR.'/'.Flux::config('ImageUploadPath').'/';
+            if (!is_dir($filepath)) {
+                mkdir($filepath);
+            }
+
 			// failed to upload the image
 			if (is_dir($filepath) && !move_uploaded_file($uploadimg['tmp_name'], $filepath.$filename))
 				$errorMessage = Flux::message("FailedToUpload");
-			else
-				$hasUpdate = TRUE;
+			else {
+				if (!updateValue($voteid, "imgname", $filename, $server))
+					$errorMessage = sprintf(Flux::message("FailedToUpdate"), "Image URL");
+				else
+					$hasUpdate = TRUE;
+			}
 		}
 	}
 
